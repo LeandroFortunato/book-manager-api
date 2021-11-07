@@ -30,7 +30,10 @@ public class BookManagerController {
 
         Book returnedBook = bookManagerService.getBookById(bookId);
 
-        if (returnedBook.equals(new Book())){ // empty
+        if (returnedBook.equals(new Book())){
+
+            //  wants to find a book by an ID that doesn't yet exist
+
             HttpHeaders httpHeaders = new HttpHeaders();
             httpHeaders.add("book", "/api/v1/book/" + bookId.toString()+" not found!");
             return new ResponseEntity<>(httpHeaders,HttpStatus.NO_CONTENT);
@@ -61,7 +64,10 @@ public class BookManagerController {
 
         HttpHeaders httpHeaders = new HttpHeaders();
 
-        if (bookManagerService.getBookById(bookId).equals(new Book())){ // book not found
+        if (bookManagerService.getBookById(bookId).equals(new Book())){
+
+            // wants to update a book that doesn't yet exist
+
             httpHeaders.add("book", "/api/v1/book/" + bookId.toString()+" not found!");
             return new ResponseEntity<>(httpHeaders,HttpStatus.NO_CONTENT);
         }else {
@@ -77,7 +83,10 @@ public class BookManagerController {
     public ResponseEntity<Book> deleteBookById(@PathVariable("bookId") Long bookId) {
 
         HttpHeaders httpHeaders = new HttpHeaders();
-        if (bookManagerService.getBookById(bookId).equals(new Book())){ // book not found
+        if (bookManagerService.getBookById(bookId).equals(new Book())){
+            
+            // wants to delete a book that doesn't yet exist
+
             httpHeaders.add("book", "/api/v1/book/" + bookId.toString()+" not found!");
             return new ResponseEntity<>(httpHeaders,HttpStatus.NO_CONTENT);
         } else if (bookManagerService.deleteBookById(bookId)) {
