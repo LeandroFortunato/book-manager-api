@@ -92,7 +92,7 @@ public class BookManagerServiceTests {
         bookManagerServiceImpl.deleteBookById(bookId);
 
         assertThat(mockBookManagerRepository.existsById(bookId)).isEqualTo(false);
-   
+
     }
 
 }

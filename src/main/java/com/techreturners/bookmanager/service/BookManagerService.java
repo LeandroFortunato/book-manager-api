@@ -14,5 +14,5 @@ public interface BookManagerService {
     void updateBookById(Long id, Book book);
 
     //Task 1 - Deleting a Book using its ID
-    void deleteBookById(Long id);
+    boolean deleteBookById(Long id);
 }
